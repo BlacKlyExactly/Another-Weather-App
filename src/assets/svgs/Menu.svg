@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="68" height="68" viewBox="0 0 68 68">
+  <defs>
+    <style>
+      .cls-1, .cls-3 {
+        fill: none;
+      }
+
+      .cls-1 {
+        stroke: #fff;
+        stroke-width: 3px;
+      }
+
+      .cls-2 {
+        stroke: none;
+      }
+    </style>
+  </defs>
+  <g id="Menu" transform="translate(0, 0)">
+    <g id="Circle" class="cls-1" transform="translate(0, 0)">
+      <rect class="cls-2" width="68" height="68" rx="34"/>
+      <rect class="cls-3" x="1.5" y="1.5" width="65" height="65" rx="32.5"/>
+    </g>
+    <g id="Lines" transform="translate(17, 34)">
+      <line id="l3" class="cls-1" x1="33" y1="0.266" transform="translate(0, -10)"/>
+      <line id="l2" class="cls-1" x1="33" y1="0.266"/>
+      <line id="l1" class="cls-1" x1="33" y1="0.266" transform="translate(0, 10)"/>
+    </g>
+  </g>
+</svg>
