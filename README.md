@@ -13,8 +13,12 @@ Another Weather App written using:
 1. Clone or download repository
 2. ```cd another-weather-app```
 3. ```npm install``` or ```yarn install```
-4. ```yarn build``` 
-5. build/ directory is an app output folder
+4. Create ```.env``` file and fill it with 
+```
+REACT_APP_WEATHER_API_KEY=OPENWEATHERMAP API KEY
+```
+5. ```yarn build``` 
+6. build/ directory is an app output folder
 
 For development mode use:
 ```yarn start``` or ```npm run start```
