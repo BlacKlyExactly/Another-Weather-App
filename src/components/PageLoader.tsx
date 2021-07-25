@@ -7,13 +7,17 @@ import { blue } from '../assets/colors';
 const PageLoader: React.FC = () => {
     const [ isLoaded, setLoadedState ] = React.useState<boolean>(false);
 
+    const tl = React.useRef<GSAPTimeline>(gsap.timeline());
     const pageLoader = React.useRef<HTMLDivElement>(null);
 
     React.useEffect(() => {
         const load = () => setLoadedState(true);
         window.addEventListener("load", load);
 
-        isLoaded && gsap.to(pageLoader.current, { opacity: 0, delay: 0.5, duration: 0.5, ease: "power4.in" })
+        if(isLoaded){
+            tl.current.to(pageLoader.current, { opacity: 0, delay: 0.5, duration: 0.5, ease: "power4.in" })
+                      .set(pageLoader.current, { zIndex: -1 });
+        }
 
         return () => {
             window.removeEventListener("load", load);
