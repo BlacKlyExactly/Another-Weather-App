@@ -1,43 +1,57 @@
 import * as React from "react";
 import styled, { createGlobalStyle } from "styled-components";
-import backgroundDesktop from "./assets/imgs/background1.png";
 import { Helmet } from "react-helmet";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import { white } from "./assets/colors";
 import WeatherInfo from "./components/WeatherInfo";
 import InfoPanel from "./components/InfoPanel";
+import PageLoader from "./components/PageLoader";
 import { Unit, WeatherApiResponse } from "./utils/openweathermap";
 import useWeather from "./hooks/useWeather";
+import backgroundDesktop from "./assets/imgs/background1.png";
 
 interface WeatherContextProps {
   weatherData: WeatherApiResponse | undefined,
   fetchWeatherData: ( location: string, unit?: Unit ) => void,
-  error: Error | undefined,
+  error: Error | null,
+  isLoading: boolean,
 }
 
 export const WeatherContext = React.createContext<WeatherContextProps>({
   weatherData: undefined,
   fetchWeatherData: () => {},
-  error: undefined,
+  error: null,
+  isLoading: false,
 })
 
 const App: React.FC = () => {
-  const { weather, fetchWeatherData, error } = useWeather();
+  const { 
+    weather, 
+    fetchWeatherData, 
+    error,
+    isLoading
+  } = useWeather();
 
   return(
     <Wrapper>
       <Helmet>
         <link rel="preconnect" href="https://fonts.gstatic.com" />
-            <link 
-              href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" 
-              rel="stylesheet"
-            />
-        </Helmet>
+        <link 
+          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" 
+          rel="stylesheet"
+        />
+      </Helmet>
+      <PageLoader/>
       <Global/>
       <WeatherContext.Provider value={{
         weatherData: weather,
         fetchWeatherData,
-        error
+        error,
+        isLoading
       }}>
+        <ToastContainer/>
         <InfoPanel/>
         <Weather>
           <WeatherInfo/>

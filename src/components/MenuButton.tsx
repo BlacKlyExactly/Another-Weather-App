@@ -5,9 +5,8 @@ import { ReactComponent as MenuButtonSvg } from "../assets/svgs/Menu.svg";
 import { red } from "../assets/colors";
 
 const MenuButton: React.FC = () => {
-    const [ tl ] = React.useState<GSAPTimeline>(gsap.timeline());
-
     const button = React.useRef<SVGSVGElement>(null);
+    const tl = React.useRef<GSAPTimeline>(gsap.timeline());
 
     React.useEffect(() => {
         const lines = button.current?.querySelector("#Lines");
@@ -17,13 +16,13 @@ const MenuButton: React.FC = () => {
 
         const [ l1, l2, l3 ] = lines.children;
 
-        tl.to(l3, { opacity: 0, duration: 0.2 }, 0)
+        tl.current.to(l3, { opacity: 0, duration: 0.2 }, 0)
             .to([ l1, l2, l3, circle ], { stroke: red, duration: 0.2 }, 0)
             .to(l1, { rotationZ: -45, y: 2, duration: 0.2, transformOrigin: "50% 50%" }, 0)
             .to(l2, { rotationZ: 45, y: 2, duration: 0.2, transformOrigin: "50% 50%" }, 0)
     }, [ tl ]);
 
-    const toggle = () => tl.reversed(!tl.reversed());
+    const toggle = () => tl.current.reversed(!tl.current.reversed());
 
     return(
         <Wrapper onClick={toggle}>

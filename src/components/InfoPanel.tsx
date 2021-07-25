@@ -1,6 +1,8 @@
 import * as React from 'react';
 import styled from "styled-components";
 import gsap from "gsap";
+import Loader from "react-spinkit";
+
 import MenuButton from "./MenuButton";
 import { ReactComponent as Loupe } from "../assets/svgs/Loupe.svg";
 import { blue, white } from '../assets/colors';
@@ -10,7 +12,11 @@ const InfoPanel: React.FC = () => {
     const [ opened, setOpenedState ] = React.useState<boolean>(true);
     const [ city, setCity ] = React.useState<string>("");
 
-    const { fetchWeatherData, weatherData } = React.useContext(WeatherContext);
+    const { 
+        fetchWeatherData, 
+        weatherData,
+        isLoading,
+    } = React.useContext(WeatherContext);
 
     const panel = React.useRef<HTMLDivElement>(null);
 
@@ -53,25 +59,28 @@ const InfoPanel: React.FC = () => {
                         <Loupe />
                     </CitySubmit>
                 </WeatherForm>
-                {weatherData && (
-                    <WeatherDetails>
-                        <WeatherDetailsTitle>
-                            Weather Details
-                            <img 
-                                src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`} 
-                                alt={weatherData.weather[0].icon}
-                            />
-                        </WeatherDetailsTitle>
-                        <WeatherData name="Temperature" value={`${main.temp}°C`}/>
-                        <WeatherData name="Cloudy" value={`${clouds.all}%`}/>
-                        <WeatherData name="Humidity" value={`${main.humidity}`}/>
-                        <WeatherData name="Wind Speed" value={`${wind.speed} m/s`}/>
-                        <WeatherData name="Wind Deg" value={`${wind.deg} °`}/>
-                        <WeatherData name="Pressure" value={`${main.pressure} hPa`}/>
-                        <WeatherData name="City" value={`${name}`}/>
-                        <WeatherData name="Country" value={`${sys.country}`}/>
-                    </WeatherDetails>
-                )}
+                <WeatherDetails>
+                    {weatherData && !isLoading && (
+                        <>
+                            <WeatherDetailsTitle>
+                                Weather Details
+                                <img 
+                                    src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`} 
+                                    alt={weatherData.weather[0].icon}
+                                />
+                            </WeatherDetailsTitle>
+                            <WeatherData name="Temperature" value={`${main.temp}°C`}/>
+                            <WeatherData name="Cloudy" value={`${clouds.all}%`}/>
+                            <WeatherData name="Humidity" value={`${main.humidity}`}/>
+                            <WeatherData name="Wind Speed" value={`${wind.speed} m/s`}/>
+                            <WeatherData name="Wind Deg" value={`${wind.deg} °`}/>
+                            <WeatherData name="Pressure" value={`${main.pressure} hPa`}/>
+                            <WeatherData name="City" value={`${name}`}/>
+                            <WeatherData name="Country" value={`${sys.country}`}/>
+                        </>
+                    )}
+                    {isLoading && <Loader name="pacman"/>}
+                </WeatherDetails>
             </Panel>
             <MenuToggler onClick={toggleMenu}>
                 <MenuButton/>

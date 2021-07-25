@@ -1,28 +1,36 @@
 import * as React from 'react';
 import styled from "styled-components";
-import { WeatherContext } from '../App';
+import Loader from "react-spinkit";
 import gsap from "gsap";
 
+import { WeatherContext } from '../App';
+
 const WeatherInfo = () => {
-    const { weatherData } = React.useContext(WeatherContext);
+    const { weatherData, isLoading, error } = React.useContext(WeatherContext);
 
     const info = React.useRef<HTMLDivElement>(null);
 
     React.useEffect(() => {
-        info.current && gsap.from(info.current, { opacity: 0, y: 20, duration: 0.5, ease: "expo.inOut" })
-    }, [ weatherData ])
+        !isLoading && gsap.from(info.current, { opacity: 0, y: 20, duration: 0.5, ease: "expo.inOut" });
+    }, [ isLoading ])
 
     if(!weatherData) return null;
     const { main, name, weather } = weatherData;
 
     return (
         <Wrapper ref={info}>
-            <Temperature>{main.temp}°</Temperature>
-            <div>
-                <CityName>{name}</CityName>
-                <Description>{weather[0].description}</Description>
-            </div>
-            <Icon src={`http://openweathermap.org/img/wn/${weather[0].icon}@2x.png`} alt={weather[0].icon}/>
+            {isLoading && <Loader name="pacman"/>}
+            {!isLoading && !error && (
+                <>
+                    <Temperature>{main.temp}°</Temperature>
+                    <div>
+                        <CityName>{name}</CityName>
+                        <Description>{weather[0].description}</Description>
+                    </div>
+                    <Icon src={`http://openweathermap.org/img/wn/${weather[0].icon}@2x.png`} alt={weather[0].icon}/>
+                </>
+            )}
+            {error && <CityName>Error occurred :(</CityName>}
         </Wrapper>
     )
 };
