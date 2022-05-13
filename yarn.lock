@@ -2836,6 +2836,11 @@ bcrypt-pbkdf@^1.0.0:
   dependencies:
     tweetnacl "^0.14.3"
 
+better-alerts@^1.0.12:
+  version "1.0.12"
+  resolved "https://registry.yarnpkg.com/better-alerts/-/better-alerts-1.0.12.tgz#34c60ae1ec139b41d38881de2e7b7bd1ca7c9e9d"
+  integrity sha512-IZKQz+QFTZtT2dvWRZX/YVwAmhrQ+wMmlGq+ZwJIQBb+R+vOABbZyduKjLbNxzmVyg/+ot6BFF6nxiBKfFJP+A==
+
 bfj@^7.0.2:
   version "7.0.2"
   resolved "https://registry.yarnpkg.com/bfj/-/bfj-7.0.2.tgz#1988ce76f3add9ac2913fd8ba47aad9e651bfbb2"
@@ -10469,11 +10474,6 @@ styled-components@^5.2.1:
     hoist-non-react-statics "^3.0.0"
     shallowequal "^1.1.0"
     supports-color "^5.5.0"
-
-styled-spinkit@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/styled-spinkit/-/styled-spinkit-1.1.0.tgz#779838002f03d8d86f68c80fbf5f44d81183267a"
-  integrity sha512-vB9aqVv4iVojGWJtDiEap0VBwKtLxkSOXZJjAMgoO8FJlVIJhAZQxm6zg/KGzMsBpesTdjfk4TVjdAn4P0UQ1w==
 
 stylehacks@^4.0.0:
   version "4.0.3"

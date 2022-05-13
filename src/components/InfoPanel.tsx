@@ -114,11 +114,11 @@ const Panel = styled.div`
     background: rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(18px);
     z-index: 100;
-    padding-left: 30px;
+    padding: 0 30px;
 
     @media screen and (min-width: 1150px){
         width: 43%;
-        padding-left: 5vw;
+        padding: 0 100px
     }
 `;
 
@@ -159,6 +159,9 @@ const CityInput = styled.input`
 `;
 
 const CitySubmit = styled.button`
+    position: absolute;
+    top: 0;
+    right: 0;
     width: 106px;
     height: 106px;
     background: ${blue};
@@ -176,7 +179,7 @@ const CitySubmit = styled.button`
 `;
 
 const WeatherDetails = styled.div`
-    width: 75%;
+    width: 100%;
     height: 162px;
     margin-top: 25%;
 `;

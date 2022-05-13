@@ -2,8 +2,6 @@ import * as React from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import { Helmet } from "react-helmet";
 import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
 import { white } from "./assets/colors";
 import WeatherInfo from "./components/WeatherInfo";
 import InfoPanel from "./components/InfoPanel";
